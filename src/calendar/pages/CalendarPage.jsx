@@ -1,10 +1,8 @@
 
 import React from 'react'
 
-const CalendarPage = () => {
+export const CalendarPage = () => {
   return (
     <div>CalendarPage</div>
   )
 }
-
-export default CalendarPage
