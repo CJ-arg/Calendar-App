@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router'
-import LoginPage from '../pages/LoginPage'
+import { LoginPage } from '../auth'
+
 
 export const AppRouter = () => {
   const authStatus = 'not-autenticated'
