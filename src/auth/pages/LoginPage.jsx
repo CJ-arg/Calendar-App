@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './login.css';
 export const LoginPage = () => {
   return (
     <div className="container login-container">
