@@ -1,5 +1,5 @@
 import React from 'react'
-import './login.css';
+import './LoginPage.css';
 export const LoginPage = () => {
   return (
     <div className="container login-container">
@@ -21,7 +21,7 @@ export const LoginPage = () => {
                 placeholder="Contraseña"
               />
             </div>
-            <div className="form-group mb-2">
+            <div className="d-grid gap-2">
               <input
                 type="submit"
                 className="btnSubmit"
@@ -64,7 +64,7 @@ export const LoginPage = () => {
               />
             </div>
 
-            <div className="form-group mb-2">
+            <div className="d-grid gap-2">
               <input
                 type="submit"
                 className="btnSubmit"
