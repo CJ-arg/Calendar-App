@@ -1,23 +1,14 @@
 
 import React from 'react'
 import { Navbar } from '../components/Navbar'
-import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
+import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import enUS from 'date-fns/locale/en-US'
-import { addHours, getDay, startOfWeek, parse, format } from 'date-fns'
-const locales = {
-  'en-US': enUS,
-}
 
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-})
+import { addHours } from 'date-fns'
+import { localizer } from '../../helpers'
+
 const events = [{
-  title: 'cumple',
+  title: 'cumple FAMILIAR ',
   notes: 'llevar regalo',
   start: new Date(),
   end: addHours(new Date(), 2),
