@@ -14,17 +14,20 @@ const customStyles = {
   },
 };
 Modal.setAppElement('#root');
-
+const OnCloseModal = () => {
+  console.log('cerrando modal');
+}
 
 export const CalendarModal = () => {
   return (
     <Modal
 
-      isOpen={modalIsOpen}
-      onAfterOpen={afterOpenModal}
-      onRequestClose={closeModal}
+      isOpen={true}
+      onRequestClose={OnCloseModal}
       style={customStyles}>
-      CalendarModal
+      <h1>Hola mundo </h1>
+      <hr />
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum et, error hic quos consequuntur soluta, adipisci repellendus iste, totam fugit eaque! Repudiandae totam officia vitae quam tempora, nam ut incidunt! </p>
     </Modal>
   )
 }
