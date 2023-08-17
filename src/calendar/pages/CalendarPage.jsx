@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Navbar, CalendarEvent, CalendarModal, FabAddNew } from '../index'
 import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { addHours } from 'date-fns'
 import { getMessagesEs, localizer } from '../../helpers'
 import { useUiStore, useCalendarStore } from '../../hooks'
 
