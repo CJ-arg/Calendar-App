@@ -1,3 +1,4 @@
+import { addHours } from 'date-fns';
 import React, { useState } from 'react'
 import Modal from 'react-modal';
 
@@ -17,6 +18,20 @@ Modal.setAppElement('#root');
 
 export const CalendarModal = () => {
   const [isOpen, setIsOpen] = useState(true)
+  const [formsValues, setFormsValues] = useState({
+    title: 'carlos',
+    notes: 'janon',
+    start: new Date(),
+    end: addHours(new Date(), 2)
+  })
+  const onInputChange = ({ target }) => {
+    setFormsValues({
+      ...formsValues,
+      [target.name]: target.value
+
+    })
+
+  }
   const OnCloseModal = () => {
     setIsOpen(!isOpen)
   }
@@ -51,6 +66,8 @@ export const CalendarModal = () => {
             placeholder="Título del evento"
             name="title"
             autoComplete="off"
+            value={formsValues.title}
+            onChange={onInputChange}
           />
           <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
         </div>
@@ -62,6 +79,8 @@ export const CalendarModal = () => {
             placeholder="Notas"
             rows="5"
             name="notes"
+            value={formsValues.notes}
+            onChange={onInputChange}
           ></textarea>
           <small id="emailHelp" className="form-text text-muted">Información adicional</small>
         </div>
