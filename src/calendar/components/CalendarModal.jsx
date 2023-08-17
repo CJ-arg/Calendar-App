@@ -41,6 +41,11 @@ export const CalendarModal = () => {
   const OnCloseModal = () => {
     setIsOpen(!isOpen)
   }
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+
+  }
   return (
     <Modal
       overlayClassName='modal-fondo'
@@ -51,7 +56,7 @@ export const CalendarModal = () => {
       style={customStyles}>
       <h1> Nuevo evento </h1>
       <hr />
-      <form className="container">
+      <form className="container" onSubmit={onSubmit}>
 
         <div className="form-group mb-2">
           <label>Fecha y hora inicio</label>
