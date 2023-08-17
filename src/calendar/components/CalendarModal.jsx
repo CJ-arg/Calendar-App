@@ -1,9 +1,10 @@
-import { addHours } from 'date-fns';
+import { addHours, differenceInSeconds } from 'date-fns';
 import React, { useState } from 'react'
 import Modal from 'react-modal';
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
+
 const customStyles = {
   content: {
     top: '50%',
@@ -43,8 +44,13 @@ export const CalendarModal = () => {
   }
   const onSubmit = (event) => {
     event.preventDefault();
-
-
+    const differnce = differenceInSeconds(formsValues.end, formsValues.start)
+    if (isNaN(differnce) || differnce <= 0) {
+      console.log('error en las fechas');
+      return
+    }
+    if (formsValues.title.length <= 0) return
+    console.log(formsValues);
   }
   return (
     <Modal
