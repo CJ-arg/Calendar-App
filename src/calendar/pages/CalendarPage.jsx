@@ -5,12 +5,13 @@ import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { addHours } from 'date-fns'
 import { getMessagesEs, localizer } from '../../helpers'
-import { useUiStore } from '../../hooks'
+import { useUiStore, useCalendarStore } from '../../hooks'
 
 
 
 export const CalendarPage = () => {
   const { openDateModal } = useUiStore()
+  const { events } = useCalendarStore()
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
