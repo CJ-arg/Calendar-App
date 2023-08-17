@@ -22,7 +22,10 @@ const customStyles = {
 Modal.setAppElement('#root');
 registerLocale('es', es)
 export const CalendarModal = () => {
-  const { isDateModalOpen } = useUiStore()
+
+
+
+  const { isDateModalOpen, closeDateModal } = useUiStore()
   const [isOpen, setIsOpen] = useState(true)
   const [formsValues, setFormsValues] = useState({
     title: 'carlos',
@@ -55,7 +58,7 @@ export const CalendarModal = () => {
     })
   }
   const OnCloseModal = () => {
-    onCloseDateModal()
+    closeDateModal()
   }
   const onSubmit = (event) => {
     event.preventDefault();
