@@ -47,16 +47,16 @@ export const CalendarModal = () => {
     setFormsValues({
       ...formsValues,
       [target.name]: target.value
-
     })
-
   }
+
   const onDateChange = (event, changing) => {
     setFormsValues({
       ...formsValues,
       [changing]: event
     })
   }
+
   const OnCloseModal = () => {
     closeDateModal()
   }

@@ -8,18 +8,7 @@ import { getMessagesEs, localizer } from '../../helpers'
 import { useUiStore } from '../../hooks'
 
 
-const events = [{
-  title: 'cumple FAMILIAR ',
-  notes: 'llevar regalo',
-  start: new Date(),
-  end: addHours(new Date(), 2),
-  bgColor: '#fafafa',
-  user: {
-    _id: '123',
-    name: 'Carlos'
-  }
 
-}]
 export const CalendarPage = () => {
   const { openDateModal } = useUiStore()
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
