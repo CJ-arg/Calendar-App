@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react'
-import { Navbar, CalendarEvent, CalendarModal } from '../index'
+import { Navbar, CalendarEvent, CalendarModal, FabAddNew } from '../index'
 import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { addHours } from 'date-fns'
@@ -52,6 +52,7 @@ export const CalendarPage = () => {
         onView={onViewChanged}
       />
       <CalendarModal />
+      <FabAddNew />
     </>
   )
 }
