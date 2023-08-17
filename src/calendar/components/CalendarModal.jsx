@@ -6,6 +6,8 @@ import Modal from 'react-modal';
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import es from 'date-fns/locale/es';
+import { useUiStore } from '../../hooks';
+import { onCloseDateModal } from '../../store';
 
 const customStyles = {
   content: {
@@ -20,6 +22,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 registerLocale('es', es)
 export const CalendarModal = () => {
+  const { isDateModalOpen } = useUiStore()
   const [isOpen, setIsOpen] = useState(true)
   const [formsValues, setFormsValues] = useState({
     title: 'carlos',
@@ -52,7 +55,7 @@ export const CalendarModal = () => {
     })
   }
   const OnCloseModal = () => {
-    setIsOpen(!isOpen)
+    onCloseDateModal()
   }
   const onSubmit = (event) => {
     event.preventDefault();
@@ -70,7 +73,7 @@ export const CalendarModal = () => {
       overlayClassName='modal-fondo'
       closeTimeoutMS={200}
       className='modal'
-      isOpen={isOpen}
+      isOpen={isDateModalOpen}
       onRequestClose={OnCloseModal}
       style={customStyles}>
       <h1> Nuevo evento </h1>
