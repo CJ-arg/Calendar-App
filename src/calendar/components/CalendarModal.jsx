@@ -22,7 +22,7 @@ const customStyles = {
 Modal.setAppElement('#root');
 registerLocale('es', es)
 export const CalendarModal = () => {
-  const { activeEvent } = useCalendarStore()
+  const { activeEvent, startSavingEvent } = useCalendarStore()
   const { isDateModalOpen, closeDateModal } = useUiStore()
   const [formsValues, setFormsValues] = useState({
     title: '',
@@ -59,7 +59,7 @@ export const CalendarModal = () => {
   const OnCloseModal = () => {
     closeDateModal()
   }
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true)
     const differnce = differenceInSeconds(formsValues.end, formsValues.start)
@@ -69,6 +69,8 @@ export const CalendarModal = () => {
     }
     if (formsValues.title.length <= 0) return
     console.log(formsValues);
+    await startSavingEvent(formsValues)
+    closeDateModal()
   }
   return (
     <Modal
