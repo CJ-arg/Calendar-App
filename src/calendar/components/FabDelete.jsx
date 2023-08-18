@@ -12,7 +12,7 @@ export const FabDelete = () => {
   return (
     <button
       className="btn btn-danger fab-danger"
-      onClick={handleDelete}
+      onClick={startDeletingEvent}
       style={{
         display: hasEventSelected ? '' : 'none'
       }}
