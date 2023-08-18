@@ -3,12 +3,9 @@
 import { addHours } from 'date-fns';
 import { useCalendarStore, useUiStore } from '../../hooks';
 
-
 export const FabAddNew = () => {
-
   const { openDateModal } = useUiStore();
   const { setActiveEvent } = useCalendarStore();
-
   const handleClickNew = () => {
     setActiveEvent({
       title: '',
@@ -23,8 +20,6 @@ export const FabAddNew = () => {
     });
     openDateModal();
   }
-
-
   return (
     <button
       className="btn btn-primary fab"
