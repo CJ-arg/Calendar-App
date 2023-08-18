@@ -1,5 +1,5 @@
 import { addHours, differenceInSeconds } from 'date-fns';
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import Modal from 'react-modal';
@@ -22,11 +22,8 @@ const customStyles = {
 Modal.setAppElement('#root');
 registerLocale('es', es)
 export const CalendarModal = () => {
-
-
   const { activeEvent } = useCalendarStore()
   const { isDateModalOpen, closeDateModal } = useUiStore()
-  const [isOpen, setIsOpen] = useState(true)
   const [formsValues, setFormsValues] = useState({
     title: '',
     notes: '',
@@ -34,7 +31,6 @@ export const CalendarModal = () => {
     end: addHours(new Date(), 2)
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
-
   const titleClass = useMemo(() => {
     if (!formSubmitted) return ''
     return (formsValues.title.length > 0)
@@ -42,14 +38,12 @@ export const CalendarModal = () => {
   },
     [formsValues.title, formSubmitted]
   )
-
   const onInputChange = ({ target }) => {
     setFormsValues({
       ...formsValues,
       [target.name]: target.value
     })
   }
-
   const onDateChange = (event, changing) => {
     setFormsValues({
       ...formsValues,
@@ -60,7 +54,6 @@ export const CalendarModal = () => {
     if (activeEvent !== null) {
       setFormsValues({ ...activeEvent })
     }
-
   }, [activeEvent])
 
   const OnCloseModal = () => {
@@ -88,7 +81,6 @@ export const CalendarModal = () => {
       <h1> Nuevo evento </h1>
       <hr />
       <form className="container" onSubmit={onSubmit}>
-
         <div className="form-group mb-2">
           <label>Fecha y hora inicio</label>
           <DatePicker
@@ -101,7 +93,6 @@ export const CalendarModal = () => {
             onChange={(event) => { onDateChange(event, 'start') }}
           />
         </div>
-
         <div className="form-group mb-2">
           <label>Fecha y hora fin</label>
           <DatePicker
@@ -115,7 +106,6 @@ export const CalendarModal = () => {
             onChange={(event) => { onDateChange(event, 'end') }}
           />
         </div>
-
         <hr />
         <div className="form-group mb-2">
           <label>Titulo y notas</label>
@@ -130,7 +120,6 @@ export const CalendarModal = () => {
           />
           <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
         </div>
-
         <div className="form-group mb-2">
           <textarea
             type="text"
@@ -143,7 +132,6 @@ export const CalendarModal = () => {
           ></textarea>
           <small id="emailHelp" className="form-text text-muted">Información adicional</small>
         </div>
-
         <button
           type="submit"
           className="btn btn-outline-primary btn-block"
