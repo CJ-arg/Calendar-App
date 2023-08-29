@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { Navbar, CalendarEvent, CalendarModal, FabAddNew, FabDelete } from '../index'
 import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { getMessagesEs, localizer } from '../../helpers'
+import { getEnvVariables, getMessagesEs, localizer } from '../../helpers'
 import { useUiStore, useCalendarStore } from '../../hooks'
 
 
 
 export const CalendarPage = () => {
+  console.log(getEnvVariables());
+
   const { openDateModal } = useUiStore()
   const { events, setActiveEvent } = useCalendarStore()
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week');
