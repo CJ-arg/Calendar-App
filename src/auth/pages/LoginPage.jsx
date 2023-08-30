@@ -1,7 +1,7 @@
-import React from 'react'
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
+import { useAuthStore, useForm } from '../../hooks';
 import './LoginPage.css';
-import { useForm } from '../../hooks/useForm';
-import { useAuthStore } from '../../hooks/useAuthStore';
 
 const loginFormFields = {
   loginEmail: '',
@@ -15,18 +15,34 @@ const registerFormFields = {
 }
 
 export const LoginPage = () => {
-  const { startLogin } = useAuthStore()
-  const { loginEmail, loginPassword, onInputChange: onLoginInputChange, formState } = useForm(loginFormFields)
-  const { registerName, registerEmail, registerPassword, registerPassword2, onInputChange: onRegisterInputChange } = useForm(registerFormFields)
+
+  const { startLogin, errorMessage, startRegister } = useAuthStore();
+  const { loginEmail, loginPassword, onInputChange: onLoginInputChange } = useForm(loginFormFields);
+  const { registerEmail, registerName, registerPassword, registerPassword2, onInputChange: onRegisterInputChange } = useForm(registerFormFields);
+
   const loginSubmit = (event) => {
-    event.preventDefault()
-    console.log({ loginEmail, loginPassword });
+    event.preventDefault();
     startLogin({ email: loginEmail, password: loginPassword });
   }
-  const loginRegister = (event) => {
-    event.preventDefault()
-    console.log(registerName, registerEmail, registerPassword, registerPassword2);
+
+  const registerSubmit = (event) => {
+    event.preventDefault();
+    if (registerPassword !== registerPassword2) {
+      Swal.fire('Error en registro', 'Contraseñas no son iguales', 'error');
+      return;
+    }
+    startRegister({ name: registerName, email: registerEmail, password: registerPassword });
   }
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire('Error en la autenticación', errorMessage, 'error');
+    }
+  }, [errorMessage])
+
+
+
+
   return (
     <div className="container login-container">
       <div className="row">
@@ -38,7 +54,7 @@ export const LoginPage = () => {
                 type="text"
                 className="form-control"
                 placeholder="Correo"
-                name='loginEmail'
+                name="loginEmail"
                 value={loginEmail}
                 onChange={onLoginInputChange}
               />
@@ -48,7 +64,7 @@ export const LoginPage = () => {
                 type="password"
                 className="form-control"
                 placeholder="Contraseña"
-                name='loginPassword'
+                name="loginPassword"
                 value={loginPassword}
                 onChange={onLoginInputChange}
               />
@@ -65,13 +81,13 @@ export const LoginPage = () => {
 
         <div className="col-md-6 login-form-2">
           <h3>Registro</h3>
-          <form onSubmit={loginRegister}>
+          <form onSubmit={registerSubmit}>
             <div className="form-group mb-2">
               <input
                 type="text"
                 className="form-control"
                 placeholder="Nombre"
-                name='registerName'
+                name="registerName"
                 value={registerName}
                 onChange={onRegisterInputChange}
               />
@@ -81,7 +97,7 @@ export const LoginPage = () => {
                 type="email"
                 className="form-control"
                 placeholder="Correo"
-                name='registerEmail'
+                name="registerEmail"
                 value={registerEmail}
                 onChange={onRegisterInputChange}
               />
@@ -91,7 +107,7 @@ export const LoginPage = () => {
                 type="password"
                 className="form-control"
                 placeholder="Contraseña"
-                name='registerPassword'
+                name="registerPassword"
                 value={registerPassword}
                 onChange={onRegisterInputChange}
               />
@@ -102,7 +118,7 @@ export const LoginPage = () => {
                 type="password"
                 className="form-control"
                 placeholder="Repita la contraseña"
-                name='registerPassword2'
+                name="registerPassword2"
                 value={registerPassword2}
                 onChange={onRegisterInputChange}
               />
