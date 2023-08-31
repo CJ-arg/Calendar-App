@@ -22,11 +22,11 @@ export const useCalendarStore = () => {
   const startSavingEvent = async (calendarEvent) => {
     try {
       if (calendarEvent.id) {
-        // Actualizando
         await calendarApi.put(`/events/${calendarEvent.id}`, calendarEvent);
         dispatch(onUpdateEvent({ ...calendarEvent, user }));
         return;
       }
+
       // Creando
       const { data } = await calendarApi.post("/events", calendarEvent);
       dispatch(onAddNewEvent({ ...calendarEvent, id: data.evento.id, user }));
@@ -59,12 +59,10 @@ export const useCalendarStore = () => {
   };
 
   return {
-    //* Propiedades
     activeEvent,
     events,
     hasEventSelected: !!activeEvent,
 
-    //* Métodos
     setActiveEvent,
     startDeletingEvent,
     startLoadingEvents,
