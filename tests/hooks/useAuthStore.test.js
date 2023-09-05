@@ -23,7 +23,6 @@ describe("Pruebas en useAuthStore", () => {
 
   test("debe de regresar los valores por defecto", () => {
     const mockStore = getMockStore({ ...initialState });
-
     const { result } = renderHook(() => useAuthStore(), {
       wrapper: ({ children }) => (
         <Provider store={mockStore}>{children}</Provider>
@@ -48,7 +47,6 @@ describe("Pruebas en useAuthStore", () => {
         <Provider store={mockStore}>{children}</Provider>
       ),
     });
-
     await act(async () => {
       await result.current.startLogin(testUserCredentials);
     });
@@ -59,7 +57,6 @@ describe("Pruebas en useAuthStore", () => {
       status: "authenticated",
       user: { name: "Test User", uid: "62a10a4954e8230e568a49ab" },
     });
-
     expect(localStorage.getItem("token")).toEqual(expect.any(String));
     expect(localStorage.getItem("token-init-date")).toEqual(expect.any(String));
   });
@@ -71,14 +68,12 @@ describe("Pruebas en useAuthStore", () => {
         <Provider store={mockStore}>{children}</Provider>
       ),
     });
-
     await act(async () => {
       await result.current.startLogin({
         email: "algo@google.com",
         password: "123456789",
       });
     });
-
     const { errorMessage, status, user } = result.current;
     expect(localStorage.getItem("token")).toBe(null);
     expect({ errorMessage, status, user }).toEqual({
@@ -86,7 +81,6 @@ describe("Pruebas en useAuthStore", () => {
       status: "not-authenticated",
       user: {},
     });
-
     await waitFor(() => expect(result.current.errorMessage).toBe(undefined));
   });
 
@@ -116,9 +110,7 @@ describe("Pruebas en useAuthStore", () => {
     await act(async () => {
       await result.current.startRegister(newUser);
     });
-
     const { errorMessage, status, user } = result.current;
-
     expect({ errorMessage, status, user }).toEqual({
       errorMessage: undefined,
       status: "authenticated",
