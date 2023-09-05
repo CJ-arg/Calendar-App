@@ -40,9 +40,6 @@ export const LoginPage = () => {
     }
   }, [errorMessage])
 
-
-
-
   return (
     <div className="container login-container">
       <div className="row">
