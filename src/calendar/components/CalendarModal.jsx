@@ -82,25 +82,18 @@ export const CalendarModal = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     setFormSubmitted(true);
-
     const difference = differenceInSeconds(formValues.end, formValues.start);
-
     if (isNaN(difference) || difference <= 0) {
       Swal.fire('Fechas incorrectas', 'Revisar las fechas ingresadas', 'error');
       return;
     }
-
     if (formValues.title.length <= 0) return;
-
-    console.log(formValues);
-
+    // console.log(formValues);
     // TODO: 
     await startSavingEvent(formValues);
     closeDateModal();
     setFormSubmitted(false);
   }
-
-
 
   return (
     <Modal
